@@ -11,14 +11,14 @@ import java.util.Random;
 import sources.Solution;
 import util.Dataset;
 
-public class Vns implements Heuristics {
+public class Vnd implements Heuristics {
 
 	private int r;
 	private Score ic;
 	private Dataset dataset;
 	private int w;
 
-	public Vns(Dataset dataset, Score ic, int r, int w) {
+	public Vnd(Dataset dataset, Score ic, int r, int w) {
 		this.dataset = dataset;
 		this.ic = ic;
 		this.r = r;
@@ -27,37 +27,31 @@ public class Vns implements Heuristics {
 
 	@Override
 	public Solution calculates(Solution s) {
-		Solution sEstrela = s.clone();
-		int parada = 1000;
+		int parada = 100;
 
 		while (parada > 0) {
 			int k = 1;
 			while (k <= r) {
-				// gera vizinho
-				Solution sLinha = gera_vizinho(sEstrela, k);
-				// busca local
-				Solution sDuasLinhas = busca_local(sLinha, r);
-				// calcula score
-				double scoreSduasLinhas = ic.calculates(dataset.getMsa(sDuasLinhas.getPositions(),
-						w));
-				double scoreSestrela = ic.calculates(dataset.getMsa(sEstrela.getPositions(), w));
-				// testa
-				if (scoreSduasLinhas > scoreSestrela) {
-					sEstrela = sDuasLinhas.clone();
+				Solution s1 = busca_local(gera_vizinho(s, k), r);
+				double scoreS1 = ic.calculates(dataset.getMsa(s1.getPositions(), dataset.getW()));
+				double scoreS = ic.calculates(dataset.getMsa(s.getPositions(), dataset.getW()));
+
+				if (scoreS1 > scoreS) {
+					s = s1;
 					k = 1;
 				} else {
-					k++;
+					k = k + 1;
 				}
 			}
 			parada--;
 		}
 
-		return sEstrela;
+		return s;
 	}
 
 	// gera vizinho com distancia k
-	private Solution gera_vizinho(Solution sEstrela, int k) {
-		Solution v = sEstrela.clone();
+	private Solution gera_vizinho(Solution s, int k) {
+		Solution v = s.clone();
 		while (k > 0) {
 			int posicao = new Random().nextInt(dataset.getSize());
 			int valor = new Random().nextInt(dataset.getValidPositions());

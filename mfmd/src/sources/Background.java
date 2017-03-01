@@ -47,6 +47,15 @@ public class Background {
 		this.order = order;
 	}
 
+	public Background(double[] manualProbabilities) {
+		this.probabilities = new LinkedHashMap<>();
+		this.probabilities.put("a", manualProbabilities[0]);
+		this.probabilities.put("c", manualProbabilities[1]);
+		this.probabilities.put("g", manualProbabilities[2]);
+		this.probabilities.put("t", manualProbabilities[3]);
+		this.order = 0;
+	}
+
 	// ******************************************************************
 	// initiates the attributes and call the methods in the correct order
 	// ******************************************************************
