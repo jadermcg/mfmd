@@ -11,14 +11,14 @@ import java.util.Random;
 import sources.Solution;
 import util.Dataset;
 
-public class Vnd implements Heuristics {
+public class ILS implements Heuristics {
 
 	private int r;
 	private Score ic;
 	private Dataset dataset;
 	private int w;
 
-	public Vnd(Dataset dataset, Score ic, int r, int w) {
+	public ILS(Dataset dataset, Score ic, int r, int w) {
 		this.dataset = dataset;
 		this.ic = ic;
 		this.r = r;
@@ -27,26 +27,33 @@ public class Vnd implements Heuristics {
 
 	@Override
 	public Solution calculates(Solution s) {
-		int parada = 100;
-
+		Solution corrente = s.clone();
+		Solution melhor = corrente.clone();
+		int parada = 1000;
+		int k = 10;
 		while (parada > 0) {
-			int k = 1;
-			while (k <= r) {
-				Solution s1 = busca_local(gera_vizinho(s, k), r);
-				double scoreS1 = ic.calculates(dataset.getMsa(s1.getPositions(), w));
-				double scoreS = ic.calculates(dataset.getMsa(s.getPositions(), w));
+			int j = 1;
+			// busca
+			while (j == 1) {
+				corrente = busca_local(corrente, r);
+				double scoreCorrente = ic.calculates(dataset.getMsa(corrente.getPositions(), w));
+				double scoreMelhor = ic.calculates(dataset.getMsa(melhor.getPositions(), w));
 
-				if (scoreS1 > scoreS) {
-					s = s1;
-					k = 1;
+				if (scoreCorrente > scoreMelhor) {
+					melhor = corrente;
+					j = 1;
 				} else {
-					k = k + 1;
+					j = 0;
 				}
 			}
+
+			// perturbacao
+			corrente = gera_vizinho(corrente, k);
+
 			parada--;
 		}
 
-		return s;
+		return melhor;
 	}
 
 	// gera vizinho com distancia k
@@ -63,12 +70,12 @@ public class Vnd implements Heuristics {
 	}
 
 	// realiza busca local
-	private Solution busca_local(Solution sLinha, int r) {
+	private Solution busca_local(Solution s, int r) {
 		List<Solution> solutions = new ArrayList<>();
 		while (r > 0) {
 			int p1 = new Random().nextInt(dataset.getSize());
 			int p2 = new Random().nextInt(dataset.getSize());
-			Solution v = sLinha.clone();
+			Solution v = s.clone();
 			int temp = v.getPositions().get(p1);
 			v.getPositions().set(p1, v.getPositions().get(p2));
 			v.getPositions().set(p2, temp);
