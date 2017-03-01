@@ -12,5 +12,7 @@
 	<classpathentry kind="lib" path="lib/slf4j-ext-1.7.21.jar"/>
 	<classpathentry kind="lib" path="lib/slf4j-nop-1.7.21-sources.jar"/>
 	<classpathentry kind="lib" path="lib/slf4j-simple-1.7.21.jar"/>
+	<classpathentry kind="lib" path="lib/biojava-alignment-4.0.0.jar"/>
+	<classpathentry kind="lib" path="lib/forester-1.005.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

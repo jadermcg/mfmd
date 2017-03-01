@@ -31,7 +31,6 @@ public class Vns implements Heuristics {
 		int parada = 1000;
 
 		while (parada > 0) {
-
 			int k = 1;
 			while (k <= r) {
 				// gera vizinho
