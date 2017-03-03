@@ -84,8 +84,6 @@ public class PatternDiscovery {
 		int nGeneration = 100;
 		int nr_recombination = n_pop * 8;
 		int nr_mutation = (int) (nr_recombination * 0.1);
-		// Heuristics h = new HillClimbing(score, dataset, dataset.getW(),
-		// dataset.getValidPositions(), 100);
 		Heuristics h = new Vnd(dataset, score, 5, dataset.getW());
 		Memetico memetico = new Memetico(P, n_pop, nGeneration, nr_recombination, nr_mutation,
 				dataset, score, h);

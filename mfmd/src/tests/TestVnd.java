@@ -1,7 +1,5 @@
 package tests;
 
-import heuristics.HillClimbing;
-import heuristics.ILS;
 import heuristics.Vnd;
 import interfaces.Score;
 
@@ -25,8 +23,8 @@ public class TestVnd {
 		Dataset dataset = new Dataset(file, palindrome, w);
 		Background bg = new Background(new double[] { 0.25, 0.25, 0.25, 0.25 });
 
-		List<Integer> positions = Arrays.asList(55, 45, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14,
-				15, 16, 17, 18);
+		List<Integer> positions = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15,
+				16, 17, 18);
 
 		Score ic = new InformationContentScore(bg);
 
@@ -36,11 +34,13 @@ public class TestVnd {
 
 		Vnd vnd = new Vnd(dataset, ic, 10, w);
 
-		HillClimbing hc = new HillClimbing(ic, dataset, w, dataset.getValidPositions(), 1000);
+		// HillClimbing hc = new HillClimbing(ic, dataset, w,
+		// dataset.getValidPositions(), 1000);
 
-		ILS ils = new ILS(dataset, ic, 10, 22);
-		Solution s1 = ils.calculates(s);
-		// Solution s1 = vnd.calculates(s);
+		// ILS ils = new ILS(dataset, ic, 10, 22);
+
+		// Solution s1 = ils.calculates(s);
+		Solution s1 = vnd.calculates(s);
 		// Solution s1 = hc.calculates(s);
 
 		System.out.println(s1.getScore());

@@ -63,12 +63,12 @@ public class Vnd implements Heuristics {
 	}
 
 	// realiza busca local
-	private Solution busca_local(Solution sLinha, int r) {
+	private Solution busca_local(Solution s, int r) {
 		List<Solution> solutions = new ArrayList<>();
 		while (r > 0) {
 			int p1 = new Random().nextInt(dataset.getSize());
 			int p2 = new Random().nextInt(dataset.getSize());
-			Solution v = sLinha.clone();
+			Solution v = s.clone();
 			int temp = v.getPositions().get(p1);
 			v.getPositions().set(p1, v.getPositions().get(p2));
 			v.getPositions().set(p2, temp);
