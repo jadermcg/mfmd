@@ -5,7 +5,7 @@ MFMD is a computational algorithm for *de novo* motif discovery. It uses heurist
 Follow the instructions below to be able to run mfmd
 
 ### Prerequisites
-Before running the MFMD, you must install the following external programs: Java JRE 7 or higher, WEBLOGO and R.
+Before running MFMD, you must install the following external programs: Java JRE 7 or higher, WEBLOGO and R.
 For details about how to install these packages, go to:
 * JAVA: www.java.com
 * WEBLOGO: http://weblogo.threeplusone.com/
