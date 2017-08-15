@@ -1,5 +1,5 @@
 # MFMD
-MFMD is a computational algorithm for de novo motif discovery. It uses heuristic approaches as a local optimizer and an algorithm based on the MEMES theory as a global optimizer.
+MFMD is a computational algorithm for *de novo* motif discovery. It uses heuristic approaches as a local optimizer and an algorithm based on the MEMES theory as a global optimizer.
 
 ## Getting Started
 Follow the instructions below to be able to run mfmd
