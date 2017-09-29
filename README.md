@@ -35,7 +35,7 @@ MFMD will create a directory called MDMF_OUT. Inside it, there will be three fil
 
 
 ## Authors
-* **Jader M. Caldonazzo Garbelini**
+* Jader M. Caldonazzo Garbelini
 * André Yoshiaki Kashiwabara
 * Danilo Sipoli Sanches
 
